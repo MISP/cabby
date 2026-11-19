@@ -35,7 +35,6 @@ def register_uri(uri, body, **kwargs):
         url=uri,
         body=body,
         content_type='application/xml',
-        stream=True,
         adding_headers={'X-TAXII-Content-Type': XML_11_BINDING},
         **kwargs)
 
@@ -93,7 +92,7 @@ def test_discovery():
 
     message = get_sent_message()
 
-    assert type(message) == tm11.DiscoveryRequest
+    assert type(message) is tm11.DiscoveryRequest
 
 
 @responses.activate
@@ -108,7 +107,7 @@ def test_discovery_https():
     assert len(services) == 4
 
     message = get_sent_message()
-    assert type(message) == tm11.DiscoveryRequest
+    assert type(message) is tm11.DiscoveryRequest
 
 
 @responses.activate
@@ -124,7 +123,7 @@ def test_collections():
     assert all([c.type == entities.Collection.TYPE_FEED for c in collections])
 
     message = get_sent_message()
-    assert type(message) == tm11.CollectionInformationRequest
+    assert type(message) is tm11.CollectionInformationRequest
 
 
 @responses.activate
@@ -140,7 +139,7 @@ def test_collections_with_automatic_discovery():
     assert len(response) == 2
 
     message = get_sent_message()
-    assert type(message) == tm11.CollectionInformationRequest
+    assert type(message) is tm11.CollectionInformationRequest
 
 
 @responses.activate
@@ -154,7 +153,7 @@ def test_poll():
     assert len(blocks) == 2
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
     assert message.collection_name == POLL_COLLECTION
 
 
@@ -170,7 +169,7 @@ def test_poll_count_only():
     assert not count.is_partial
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.poll_parameters.response_type == RT_COUNT_ONLY
 
@@ -188,7 +187,7 @@ def test_poll_with_subscription():
     assert len(blocks) == 2
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.subscription_id == SUBSCRIPTION_ID
 
@@ -212,7 +211,7 @@ def test_poll_with_delivery():
     assert len(blocks) == 2
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
     assert message.collection_name == POLL_COLLECTION
     returned_addr = message.poll_parameters.delivery_parameters.inbox_address
     assert returned_addr == inbox.address
@@ -232,7 +231,7 @@ def test_poll_with_fullfilment():
     assert block_1.content.decode('utf-8') == CONTENT_BLOCKS[0]
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
     assert message.collection_name == POLL_COLLECTION
 
     responses.remove(responses.POST, POLL_URI)
@@ -242,7 +241,7 @@ def test_poll_with_fullfilment():
     assert block_2.content.decode('utf-8') == CONTENT_BLOCKS[1]
 
     message = get_sent_message()
-    assert type(message) == tm11.PollFulfillmentRequest
+    assert type(message) is tm11.PollFulfillmentRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.result_part_number == 2
 
@@ -264,7 +263,7 @@ def test_poll_with_content_bindings():
     assert block_1.content.decode('utf-8') == CONTENT_BLOCKS[0]
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
     assert message.collection_name == POLL_COLLECTION
 
     poll_params = message.poll_parameters
@@ -281,7 +280,7 @@ def test_poll_with_content_bindings():
     assert block_1.content.decode('utf-8') == CONTENT_BLOCKS[0]
 
     message = get_sent_message()
-    assert type(message) == tm11.PollRequest
+    assert type(message) is tm11.PollRequest
 
     poll_params = message.poll_parameters
     assert len(poll_params.content_bindings) == 1
@@ -301,7 +300,7 @@ def test_subscribe():
     assert response.collection_name == POLL_COLLECTION
 
     message = get_sent_message()
-    assert type(message) == tm11.ManageCollectionSubscriptionRequest
+    assert type(message) is tm11.ManageCollectionSubscriptionRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.action == tm11.ACT_SUBSCRIBE
 
@@ -325,7 +324,7 @@ def test_subscribe_with_push():
     assert response.collection_name == POLL_COLLECTION
 
     message = get_sent_message()
-    assert type(message) == tm11.ManageCollectionSubscriptionRequest
+    assert type(message) is tm11.ManageCollectionSubscriptionRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.push_parameters.inbox_address == inbox.address
     assert message.action == tm11.ACT_SUBSCRIBE
@@ -345,7 +344,7 @@ def test_subscribtion_status():
     assert response.collection_name == POLL_COLLECTION
 
     message = get_sent_message()
-    assert type(message) == tm11.ManageCollectionSubscriptionRequest
+    assert type(message) is tm11.ManageCollectionSubscriptionRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.action == tm11.ACT_STATUS
 
@@ -368,7 +367,7 @@ def test_unsubscribe():
         entities.SubscriptionParameters.TYPE_FULL
 
     message = get_sent_message()
-    assert type(message) == tm11.ManageCollectionSubscriptionRequest
+    assert type(message) is tm11.ManageCollectionSubscriptionRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.action == tm11.ACT_UNSUBSCRIBE
 
@@ -387,7 +386,7 @@ def test_pause_subscription():
     assert response.collection_name == POLL_COLLECTION
 
     message = get_sent_message()
-    assert type(message) == tm11.ManageCollectionSubscriptionRequest
+    assert type(message) is tm11.ManageCollectionSubscriptionRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.action == tm11.ACT_PAUSE
 
@@ -406,7 +405,7 @@ def test_resume_subscription():
     assert response.collection_name == POLL_COLLECTION
 
     message = get_sent_message()
-    assert type(message) == tm11.ManageCollectionSubscriptionRequest
+    assert type(message) is tm11.ManageCollectionSubscriptionRequest
     assert message.collection_name == POLL_COLLECTION
     assert message.action == tm11.ACT_RESUME
 
@@ -422,7 +421,7 @@ def test_push():
 
     message = get_sent_message()
 
-    assert type(message) == tm11.InboxMessage
+    assert type(message) is tm11.InboxMessage
     assert len(message.content_blocks) == 1
     assert message.content_blocks[0].content == CONTENT
     binding = message.content_blocks[0].content_binding.binding_id
@@ -442,7 +441,7 @@ def test_push_with_destination():
 
     message = get_sent_message()
 
-    assert type(message) == tm11.InboxMessage
+    assert type(message) is tm11.InboxMessage
     assert len(message.content_blocks) == 1
     assert message.content_blocks[0].content == CONTENT
     binding = message.content_blocks[0].content_binding.binding_id

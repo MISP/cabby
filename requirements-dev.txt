@@ -2,7 +2,8 @@
 responses
 pytest>=4.6
 pytest-cov
-pytest-pythonpath
 zest.releaser
 flake8
 werkzeug
+cryptography
+trustme

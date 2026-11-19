@@ -30,16 +30,15 @@ The Cabby repository has the following layout:
 Compiling from source
 =====================
 
-After cloning the Github repo, just run::
+From the repository root, with a Python 3.12 virtual environment active, run::
 
-   $ python setup.py install
+   $ python -m pip install -r requirements-dev.txt -e .
 
 
 Running the tests
 =================
 
-Almost all Cabby code is covered by the unit tests. Cabby uses `py.test <http://pytest.org/latest/>`_ and
-`tox <http://tox.readthedocs.org/en/latest/>`_ for running tests. Type ``tox -r`` or ``py.test`` to run the unit tests.
+Run the unit tests with ``python -m pytest``. To run the Python 3.12 test suite and lint checks in isolated environments, install `tox <https://tox.wiki/>`_ and run ``tox -e py312,flake8``.
 
 
 Generating the documentation

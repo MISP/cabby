@@ -413,17 +413,14 @@ def request_with_key_password(
     if not isinstance(session.verify, bool):
         ca_cert = session.verify
     context = ssl.create_default_context(
-        ssl.Purpose.CLIENT_AUTH, cafile=ca_cert)
+        ssl.Purpose.SERVER_AUTH, cafile=ca_cert)
 
     cert_file, key_file = session.cert
     key_password = session._cabby_key_password
     context.load_cert_chain(cert_file, key_file, password=key_password)
 
-    if session.verify:
-        context.verify_mode = ssl.CERT_REQUIRED
-        if not ca_cert:
-            context.set_default_verify_paths()
-    else:
+    if not session.verify:
+        context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
 
     handlers = [urllib.request.HTTPSHandler(context=context)]

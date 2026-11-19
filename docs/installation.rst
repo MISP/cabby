@@ -7,15 +7,12 @@ Installation guide
 Install Python
 ==============
 
-OpenTAXII works with both latest Python version (3.4) and version 2.7. You can install Python with your operating system’s package manager or download it directly `here <http://www.python.org/download/>`_.
+Cabby supports Python 3.12. You can install Python with your operating system’s package manager or download it directly from `python.org <https://www.python.org/downloads/>`_.
 
-You can verify that Python is installed by typing ``python`` from your shell; you should see something like::
+Run ``python --version`` to verify the installed version. For example::
 
-    $ python
-    Python 2.7.8 (default, Oct 19 2014, 16:02:00)
-    [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.54)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> 
+    $ python --version
+    Python 3.12.14
 
 Install Cabby
 =============
@@ -24,7 +21,7 @@ To sandbox the project and protect system-wide python it is recommended to insta
 
 Create a virtual environment named venv::
 
-   $ virtualenv venv
+   $ python3.12 -m venv venv
 
 Where ``venv`` is a directory to place the new environment.
 
@@ -42,7 +39,7 @@ You can now install the latest Cabby release from the `Python Package Index <htt
     `libtaxii` requires need to be installed. Check
     `libtaxii documentation <http://libtaxii.readthedocs.org/en/latest/installation.html#dependencies>`_ for the details.
 
-To install Cabby from source files: download a tarball, unpack it and install it manually with ``python setup.py install``.
+To install Cabby from a source tarball, unpack it and run ``python -m pip install .`` in the unpacked directory.
 
 
 Versioning
