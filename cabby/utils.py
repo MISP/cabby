@@ -7,7 +7,7 @@ from .entities import ContentBinding
 
 
 def get_utc_now():
-    return datetime.utcnow().replace(tzinfo=pytz.UTC)
+    return datetime.now(pytz.UTC)
 
 
 def pack_content_binding(content_binding, version):

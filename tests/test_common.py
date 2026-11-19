@@ -47,7 +47,6 @@ def register_uri(uri, body, version, headers=None):
         url=uri,
         body=body,
         content_type="application/xml",
-        stream=True,
         adding_headers=headers,
     )
 
@@ -87,7 +86,7 @@ def test_set_headers(version):
 
     message = get_sent_message(version)
     expected_type = (tm11 if version == 11 else tm10).DiscoveryRequest
-    assert type(message) == expected_type
+    assert type(message) is expected_type
 
     last_request = responses.calls[-1].request
 
@@ -99,12 +98,6 @@ def test_set_headers(version):
 @responses.activate
 def test_invalid_response(version):
     uri = get_fix(version).DISCOVERY_URI_HTTP
-
-    # FIXME: httpretty returns body as byte string (utf-8 encoded)
-    # and when libtaxii tries to join headers (unicode) with the body (binary)
-    # error happens. Line in Libtaxii codebase
-    # https://github.com/EclecticIQ/libtaxii/blob/master/libtaxii/__init__.py#L126
-    return
 
     responses.add(
         method=responses.POST,
@@ -150,14 +143,10 @@ def test_jwt_auth_response(version):
         content = json.dumps({"token": "dummy"}).encode()
         return (200, {}, content)
 
-    # https://github.com/getsentry/responses/pull/268
-    responses.mock._matches.append(responses.CallbackResponse(
-        method=responses.POST,
-        url=JWT_URL,
-        callback=jwt_request_callback,
+    responses.add_callback(
+        responses.POST, JWT_URL, callback=jwt_request_callback,
         content_type='application/json',
-        stream=True,
-    ))
+    )
 
     discovery_uri = get_fix(version).DISCOVERY_URI_HTTP
 
@@ -236,15 +225,11 @@ def test_timeout(version):
 
     uri = get_fix(version).DISCOVERY_URI_HTTP
 
-    # https://github.com/getsentry/responses/pull/268
     content_type = VID_TAXII_XML_11 if version == 11 else VID_TAXII_XML_10
-    responses.mock._matches.append(responses.CallbackResponse(
-        responses.POST,
-        uri,
-        callback=timeout_request_callback,
+    responses.add_callback(
+        responses.POST, uri, callback=timeout_request_callback,
         content_type='application/json',
-        stream=True,
-    ))
+    )
 
     with pytest.raises(requests.exceptions.Timeout):
         client.discover_services(uri=uri)
@@ -270,7 +255,6 @@ def test_retry_once_on_unauthorized(version):
             url=JWT_URL,
             json={"token": token},
             content_type="application/json",
-            stream=True,
         )
 
     client = make_client(version)
@@ -295,13 +279,8 @@ def test_retry_once_on_unauthorized(version):
             assert token == second_token
             return (200, make_taxii_headers(version), get_fix(version).POLL_RESPONSE)
 
-    responses.mock._matches.append(
-        responses.CallbackResponse(
-            responses.POST,
-            url="http://example.localhost/poll",
-            callback=poll_callback,
-            stream=True,
-        )
+    responses.add_callback(
+        responses.POST, "http://example.localhost/poll", callback=poll_callback,
     )
 
     list(client.poll(collection_name="X", uri="/poll"))
@@ -322,12 +301,7 @@ def test_jwt_token_when_set_directly(version):
         assert token == given_token
         return (200, make_taxii_headers(version), get_fix(version).POLL_RESPONSE)
 
-    responses.mock._matches.append(
-        responses.CallbackResponse(
-            responses.POST,
-            url="http://example.localhost/poll",
-            callback=poll_callback,
-            stream=True,
-        )
+    responses.add_callback(
+        responses.POST, "http://example.localhost/poll", callback=poll_callback,
     )
     list(client.poll(collection_name="X", uri="/poll"))

@@ -1,4 +1,4 @@
-FROM python:3-slim-stretch
+FROM python:3.12-slim-bookworm
 LABEL maintainer="EclecticIQ <cabby@eclecticiq.com>"
 RUN python3 -m venv --system-site-packages /venv
 ENV PATH=/venv/bin:$PATH

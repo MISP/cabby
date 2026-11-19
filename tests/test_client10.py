@@ -35,7 +35,6 @@ def register_uri(uri, body, **kwargs):
         url=uri,
         body=body,
         content_type='application/xml',
-        stream=True,
         adding_headers={'X-TAXII-Content-Type': XML_10_BINDING},
         **kwargs)
 
@@ -89,7 +88,7 @@ def test_discovery():
 
     message = get_sent_message()
 
-    assert type(message) == tm10.DiscoveryRequest
+    assert type(message) is tm10.DiscoveryRequest
 
 
 @responses.activate
@@ -104,7 +103,7 @@ def test_discovery_https():
     assert len(services) == 4
 
     message = get_sent_message()
-    assert type(message) == tm10.DiscoveryRequest
+    assert type(message) is tm10.DiscoveryRequest
 
 
 @responses.activate
@@ -130,7 +129,7 @@ def test_collections():
     assert len(service.message_bindings) == 1
 
     message = get_sent_message()
-    assert type(message) == tm10.FeedInformationRequest
+    assert type(message) is tm10.FeedInformationRequest
 
 
 @responses.activate
@@ -146,7 +145,7 @@ def test_collections_with_automatic_discovery():
     assert len(collections) == 2
 
     message = get_sent_message()
-    assert type(message) == tm10.FeedInformationRequest
+    assert type(message) is tm10.FeedInformationRequest
 
 
 @responses.activate
@@ -160,7 +159,7 @@ def test_poll():
     assert len(blocks) == 2
 
     message = get_sent_message()
-    assert type(message) == tm10.PollRequest
+    assert type(message) is tm10.PollRequest
     assert message.feed_name == POLL_FEED
 
 
@@ -188,7 +187,7 @@ def test_poll_with_subscription():
     assert len(blocks) == 2
 
     message = get_sent_message()
-    assert type(message) == tm10.PollRequest
+    assert type(message) is tm10.PollRequest
     assert message.feed_name == POLL_FEED
     assert message.subscription_id == SUBSCRIPTION_ID
 
@@ -209,7 +208,7 @@ def test_poll_with_content_bindings():
     assert block_1.content.decode('utf-8') == CONTENT_BLOCKS[0]
 
     message = get_sent_message()
-    assert type(message) == tm10.PollRequest
+    assert type(message) is tm10.PollRequest
     assert message.feed_name == POLL_FEED
 
     assert len(message.content_bindings) == 1
@@ -224,7 +223,7 @@ def test_poll_with_content_bindings():
     assert block_1.content.decode('utf-8') == CONTENT_BLOCKS[0]
 
     message = get_sent_message()
-    assert type(message) == tm10.PollRequest
+    assert type(message) is tm10.PollRequest
 
     assert len(message.content_bindings) == 1
     assert message.content_bindings[0] == binding.id
@@ -246,7 +245,7 @@ def test_subscribe():
     assert subscription.status == subscription.STATUS_UNKNOWN
 
     message = get_sent_message()
-    assert type(message) == tm10.ManageFeedSubscriptionRequest
+    assert type(message) is tm10.ManageFeedSubscriptionRequest
     assert message.feed_name == POLL_FEED
     assert message.action == tm10.ACT_SUBSCRIBE
 
@@ -274,7 +273,7 @@ def test_subscribe_with_push():
     assert subscription.status == subscription.STATUS_UNKNOWN
 
     message = get_sent_message()
-    assert type(message) == tm10.ManageFeedSubscriptionRequest
+    assert type(message) is tm10.ManageFeedSubscriptionRequest
     assert message.feed_name == POLL_FEED
     assert message.delivery_parameters.inbox_address == inbox.address
     assert message.action == tm10.ACT_SUBSCRIBE
@@ -298,7 +297,7 @@ def test_unsubscribe():
         entities.Subscription.STATUS_UNKNOWN
 
     message = get_sent_message()
-    assert type(message) == tm10.ManageFeedSubscriptionRequest
+    assert type(message) is tm10.ManageFeedSubscriptionRequest
     assert message.feed_name == POLL_FEED
     assert message.action == tm10.ACT_UNSUBSCRIBE
 
@@ -313,7 +312,7 @@ def test_push():
 
     message = get_sent_message()
 
-    assert type(message) == tm10.InboxMessage
+    assert type(message) is tm10.InboxMessage
     assert len(message.content_blocks) == 1
     assert message.content_blocks[0].content == CONTENT
     assert message.content_blocks[0].content_binding == CONTENT_BINDING
