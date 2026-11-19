@@ -2,6 +2,9 @@
 import logging
 import sys
 import argparse
+from datetime import UTC
+
+from dateutil.parser import parse
 from colorlog import ColoredFormatter
 
 from .. import create_client
@@ -14,6 +17,15 @@ TAXII_10 = '1.0'
 TAXII_11 = '1.1'
 DEFAULT_VERSION = TAXII_11
 VERSION_CHOICES = [TAXII_10, TAXII_11]
+
+
+def parse_timestamp(value):
+    if not value:
+        return None
+    timestamp = parse(value)
+    if timestamp.tzinfo is None:
+        return timestamp.replace(tzinfo=UTC)
+    return timestamp
 
 
 def get_basic_arg_parser():

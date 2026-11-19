@@ -6,6 +6,7 @@ Changelog
 
 * Allow HTTPS authentication with certificates for taxii-proxy
 * Support Python 3.12 and fix TLS connections that use encrypted client keys.
+* Drop support for end-of-life Python releases. Supported versions are 3.11 and 3.12.
 
 0.1.23 (2020-11-18)
 -------------------

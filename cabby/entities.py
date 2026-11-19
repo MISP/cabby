@@ -8,7 +8,7 @@ log = logging.getLogger(__name__)
 SERVICE_TYPES = set(const.SVC_TYPES)
 
 
-class Entity(object):
+class Entity:
     '''Generic entity.'''
     raw = None
 
@@ -139,7 +139,7 @@ class InboxService(ServiceInstance):
     def __init__(self, protocol, address, message_bindings,
                  content_bindings=None):
 
-        super(InboxService, self).__init__(protocol, address, message_bindings)
+        super().__init__(protocol, address, message_bindings)
 
         self.content_bindings = content_bindings or []
 
@@ -246,7 +246,7 @@ class InboxDetailedService(DetailedServiceInstance):
     '''
 
     def __init__(self, content_bindings, **kwargs):
-        super(InboxDetailedService, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.content_bindings = content_bindings
 
 

@@ -1,7 +1,5 @@
 import argparse
 import logging
-import dateutil
-import pytz
 
 from cabby import create_client
 from cabby.constants import (CB_CAP_11, CB_SMIME, CB_STIX_XML_10,
@@ -10,7 +8,7 @@ from cabby.constants import (CB_CAP_11, CB_SMIME, CB_STIX_XML_10,
 
 from .commons import (
     DEFAULT_VERSION, VERSION_CHOICES,
-    configure_color_logging, prepare_headers
+    configure_color_logging, parse_timestamp, prepare_headers
 )
 
 log = logging.getLogger(__name__)
@@ -116,19 +114,8 @@ def get_blocks(client, args):
     if args.limit == 0:
         return
 
-    if args.begin:
-        begin = dateutil.parser.parse(args.begin)
-        if not begin.tzinfo:
-            begin = begin.replace(tzinfo=pytz.UTC)
-    else:
-        begin = None
-
-    if args.end:
-        end = dateutil.parser.parse(args.end)
-        if not end.tzinfo:
-            end = end.replace(tzinfo=pytz.UTC)
-    else:
-        end = None
+    begin = parse_timestamp(args.begin)
+    end = parse_timestamp(args.end)
 
     blocks = client.poll(
         collection_name=args.poll_collection,

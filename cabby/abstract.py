@@ -12,10 +12,9 @@ from .exceptions import (
     ServiceNotFoundError,
     UnsuccessfulStatusError,
 )
-from six.moves import map
 
 
-class AbstractClient(object):
+class AbstractClient:
     '''
     Abstract client class.
 

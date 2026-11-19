@@ -5,8 +5,7 @@ class ClientException(Exception):
 class HTTPError(ClientException):
 
     def __init__(self, status_code):
-        super(ClientException, self).__init__(
-            'HTTP Error: status code {}'.format(status_code))
+        super().__init__(f'HTTP Error: status code {status_code}')
 
 
 class InvalidResponseError(ClientException):
@@ -16,8 +15,8 @@ class InvalidResponseError(ClientException):
 class UnsuccessfulStatusError(ClientException):
 
     def __init__(self, taxii_status, *args, **kwargs):
-        msg = "Server Error: {}".format(_status_to_message(taxii_status))
-        super(UnsuccessfulStatusError, self).__init__(msg, *args, **kwargs)
+        msg = f"Server Error: {_status_to_message(taxii_status)}"
+        super().__init__(msg, *args, **kwargs)
 
         self.status = taxii_status.status_type
         self.text = taxii_status.to_text()
@@ -39,9 +38,7 @@ class NoURIProvidedError(ValueError):
 class NotSupportedError(ClientException):
 
     def __init__(self, version, *args, **kwargs):
-        super(NotSupportedError, self).__init__(
-            "Not supported in version {}".format(version),
-            *args, **kwargs)
+        super().__init__(f"Not supported in version {version}", *args, **kwargs)
 
 
 def _status_to_message(status):
@@ -59,8 +56,5 @@ def _status_to_message(status):
     return "{}: {}".format(status.status_type, "; ".join(details))
 
 
-def _dict_to_pairs(d):
-    pairs = []
-    for k, v in list(d.items()):
-        pairs.append('%s=%s' % (k, v))
-    return ", ".join(pairs)
+def _dict_to_pairs(details):
+    return ", ".join(f"{key}={value}" for key, value in details.items())

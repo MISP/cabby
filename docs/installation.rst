@@ -7,7 +7,7 @@ Installation guide
 Install Python
 ==============
 
-Cabby supports Python 3.12. You can install Python with your operating system’s package manager or download it directly from `python.org <https://www.python.org/downloads/>`_.
+Cabby supports Python 3.11 and 3.12. Its TAXII dependency, libtaxii, uses the standard-library module ``cgi``, which Python 3.13 removed. You can install Python with your operating system’s package manager or download it directly from `python.org <https://www.python.org/downloads/>`_.
 
 Run ``python --version`` to verify the installed version. For example::
 

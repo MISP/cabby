@@ -1,12 +1,10 @@
 
 import os
 import re
-import pytz
 import logging
 import hashlib
-import dateutil.parser
 
-from .commons import run_client, get_basic_arg_parser
+from .commons import get_basic_arg_parser, parse_timestamp, run_client
 
 log = logging.getLogger(__name__)
 
@@ -95,19 +93,8 @@ def _runner(client, path, args):
     if args.limit == 0:
         return
 
-    if args.begin:
-        begin = dateutil.parser.parse(args.begin)
-        if not begin.tzinfo:
-            begin = begin.replace(tzinfo=pytz.UTC)
-    else:
-        begin = None
-
-    if args.end:
-        end = dateutil.parser.parse(args.end)
-        if not end.tzinfo:
-            end = end.replace(tzinfo=pytz.UTC)
-    else:
-        end = None
+    begin = parse_timestamp(args.begin)
+    end = parse_timestamp(args.end)
 
     bindings = args.bindings.split(',') if args.bindings else None
     log.info("Polling using data binding: %s",
