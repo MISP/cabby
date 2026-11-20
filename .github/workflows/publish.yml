@@ -21,6 +21,9 @@ jobs:
           version: '0.13.6'
       - run: uv build --python 3.12
       - run: uvx --python 3.12 twine check --strict dist/*
+      - name: Verify the release wheel installs with dependencies from PyPI
+        if: github.event_name == 'release'
+        run: uv run --isolated --no-project --python 3.12 --default-index https://pypi.org/simple --with ./dist/*.whl taxii-discovery --help
       - name: Check that the release tag matches the built distribution
         if: github.event_name == 'release'
         env:
