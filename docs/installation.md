@@ -1,6 +1,8 @@
 # Installation guide
 
 Cabby supports Python 3.11 and 3.12. The commands below use Python 3.12.
+The MISP fork's distribution name is `misp-cabby`. Python code imports
+`cabby`, and the command-line tools use their existing `taxii-*` names.
 
 ## Install uv
 
@@ -28,10 +30,10 @@ when a command requests it.
 
 ## Install the TAXII command-line tools
 
-Install the MISP fork from GitHub into an isolated tool environment:
+Install the MISP fork from PyPI into an isolated tool environment.
 
 ```sh
-uv tool install --python 3.12 git+https://github.com/MISP/cabby.git
+uv tool install --python 3.12 misp-cabby
 taxii-discovery --help
 ```
 
@@ -45,19 +47,31 @@ From a uv project with a compatible Python requirement (for example,
 `requires-python = ">=3.11,<3.13"`), add the MISP fork and verify the import:
 
 ```sh
-uv add "cabby @ git+https://github.com/MISP/cabby.git"
+uv add misp-cabby
 uv run python -c "from cabby import create_client; print(create_client.__name__)"
 ```
 
-uv records the dependency in `pyproject.toml` and the resolved Git commit
-in `uv.lock`. For an editable installation from a local checkout, see
-[Contributing and developing](developer.md).
+uv records the dependency in `pyproject.toml` and the resolved version
+in `uv.lock`.
 
 ## Install with pip
 
-With a Python 3.11 or 3.12 virtual environment active, install the MISP fork
-from a checkout with `python -m pip install .`. To install the published
-PyPI release, run `python -m pip install cabby`.
+With a Python 3.11 or 3.12 virtual environment active, run
+`python -m pip install misp-cabby`.
+
+## Switch from the original distribution
+
+Both distributions provide the same `cabby` module and CLI commands. In a uv
+project that depends on `cabby`, run `uv remove cabby` before `uv add misp-cabby`.
+For a pip installation, run `python -m pip uninstall cabby` before installing
+`misp-cabby`. For a uv tool installation, run `uv tool uninstall cabby` first.
+
+## Install directly from GitHub
+
+To run the development version, including before the first PyPI release, use
+`uv tool install --python 3.12 git+https://github.com/MISP/cabby.git` for the
+CLI, or `uv add "misp-cabby @ git+https://github.com/MISP/cabby.git"` in a uv
+project. For an editable checkout, see [Contributing and developing](developer.md).
 
 ## Versioning
 

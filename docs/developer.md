@@ -61,6 +61,30 @@ the initial setup, select **GitHub Actions** as the publishing source under
 **Settings → Pages → Build and deployment**. To redeploy, run the workflow
 manually from `master`.
 
+## Publish a release to PyPI
+
+Before the first release, a PyPI maintainer must register a GitHub pending
+publisher on the [PyPI publishing page](https://pypi.org/manage/account/publishing/).
+If the project already exists, use its **Publishing** settings. Enter these
+values so PyPI can identify the release job.
+
+| PyPI field | Value |
+| --- | --- |
+| PyPI project name | `misp-cabby` |
+| Owner | `MISP` |
+| Repository name | `cabby` |
+| Workflow filename | `publish.yml` |
+| Environment name | `pypi` |
+
+1. Set the new version in `cabby/_version.py`, update `CHANGES.md`, and merge
+   those changes into `master`.
+2. Publish a [GitHub Release](https://github.com/MISP/cabby/releases/new)
+   for that commit. Use the package version as the tag, for example `0.1.24`.
+3. Check the **Publish to PyPI** workflow. It builds and validates the wheel
+   and source distribution, checks the tag against the built version, and
+   uses the `pypi` environment to obtain a short-lived publishing token.
+   Both files appear on the [misp-cabby project page](https://pypi.org/project/misp-cabby/).
+
 ## Next steps
 
 Continue to [License](license.md).

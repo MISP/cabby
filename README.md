@@ -3,7 +3,7 @@
 The [MISP Project](https://www.misp-project.org/) maintains this fork of Cabby,
 a Python TAXII client originally developed by [EclecticIQ](https://www.eclecticiq.com).
 
-[Source](https://github.com/MISP/cabby) · [Documentation](https://misp.github.io/cabby/) · [PyPI](https://pypi.org/project/cabby/)
+[Source](https://github.com/MISP/cabby) · [Documentation](https://misp.github.io/cabby/) · [misp-cabby on PyPI](https://pypi.org/project/misp-cabby/)
 
 [![Build status](https://github.com/MISP/cabby/actions/workflows/tox.yml/badge.svg)](https://github.com/MISP/cabby/actions/workflows/tox.yml)
 [![Coverage status](https://coveralls.io/repos/eclecticiq/cabby/badge.svg)](https://coveralls.io/r/eclecticiq/cabby)
@@ -19,12 +19,13 @@ With [uv](https://docs.astral.sh/uv/getting-started/installation/) installed,
 run the following to install this fork's TAXII commands and check the installation.
 
 ```sh
-uv tool install --python 3.12 git+https://github.com/MISP/cabby.git
+uv tool install --python 3.12 misp-cabby
 taxii-discovery --help
 ```
 
-See the [installation guide](https://misp.github.io/cabby/installation.html) for setup instructions
-and for adding Cabby to a Python project.
+For library use, install `misp-cabby` and use `import cabby`. The
+[installation guide](https://misp.github.io/cabby/installation.html) also covers
+switching from the original distribution and installing directly from GitHub.
 
 ## Docker
 
