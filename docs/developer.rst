@@ -2,7 +2,7 @@
 Contributing and developing
 ===========================
 
-.. _cabby project page: https://github.com/EclecticIQ/cabby
+.. _cabby project page: https://github.com/MISP/cabby
 
 
 Reporting issues
@@ -27,18 +27,30 @@ The Cabby repository has the following layout:
 * ``tests/`` - tests.
 
 
-Compiling from source
-=====================
+Develop with uv
+===============
 
-From the repository root, with a Python 3.12 virtual environment active, run::
+Install uv as described in the :doc:`installation` guide. From the repository
+root, create a virtual environment and install Cabby in editable mode with its
+development dependencies::
 
-   $ python -m pip install -r requirements-dev.txt -e .
+    uv venv --python 3.12
+    uv pip install -r requirements-dev.txt -e .
 
+Activate the environment before running the tests or CLI commands. In a POSIX
+shell, run ``. .venv/bin/activate``. In PowerShell, run
+``.\.venv\Scripts\Activate.ps1``.
 
 Running the tests
 =================
 
-Run the unit tests with ``python -m pytest``. To run the Python 3.12 test suite and lint checks in isolated environments, install `tox <https://tox.wiki/>`_ and run ``tox -e py312,flake8``.
+From the activated environment, run::
+
+    python -m pytest --cov=cabby
+    python -m flake8
+    taxii-discovery --help
+
+To run the existing tox environments, use ``uvx --python 3.12 --with tox-uv tox -e py312,flake8``.
 
 
 Generating the documentation
