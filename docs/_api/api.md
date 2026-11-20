@@ -9,7 +9,7 @@
    :show-inheritance:
 ```
 
-### cabby.abstract module
+## cabby.abstract module
 
 ```{eval-rst}
 .. automodule:: cabby.abstract
@@ -18,7 +18,7 @@
    :show-inheritance:
 ```
 
-### cabby.client10 module
+## cabby.client10 module
 
 ```{eval-rst}
 .. automodule:: cabby.client10
@@ -27,7 +27,7 @@
    :show-inheritance:
 ```
 
-### cabby.client11 module
+## cabby.client11 module
 
 ```{eval-rst}
 .. automodule:: cabby.client11
@@ -36,7 +36,7 @@
    :show-inheritance:
 ```
 
-### cabby.client21 module
+## cabby.client21 module
 
 ```{eval-rst}
 .. automodule:: cabby.client21
@@ -45,7 +45,7 @@
    :show-inheritance:
 ```
 
-### cabby.entities module
+## cabby.entities module
 
 ```{eval-rst}
 .. automodule:: cabby.entities
@@ -54,7 +54,7 @@
    :show-inheritance:
 ```
 
-### cabby.exceptions module
+## cabby.exceptions module
 
 ```{eval-rst}
 .. automodule:: cabby.exceptions

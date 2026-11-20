@@ -1,0 +1,7 @@
+---
+aliases: [genindex.html, py-modindex.html]
+from: markdown-smart
+toc-depth: 2
+---
+
+{{< include _generated/api.md >}}

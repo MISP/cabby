@@ -38,7 +38,7 @@ taxii-discovery --help
 ```
 
 If your shell cannot find the command, run `uv tool update-shell` and open
-a new terminal. Use `taxii-21 --help` for the TAXII 2.1 command (see [TAXII 2.1 guide](taxii21.md)). The installation also provides `taxii-collections`,
+a new terminal. Use `taxii-21 --help` for the TAXII 2.1 command (see [TAXII 2.1 guide](taxii21.qmd)). The installation also provides `taxii-collections`,
 `taxii-poll`, `taxii-proxy`, `taxii-push` and `taxii-subscription`.
 
 ## Use Cabby in a Python project
@@ -71,7 +71,7 @@ For a pip installation, run `python -m pip uninstall cabby` before installing
 To run the development version, including before the first PyPI release, use
 `uv tool install --python 3.12 git+https://github.com/MISP/cabby.git` for the
 CLI, or `uv add "misp-cabby @ git+https://github.com/MISP/cabby.git"` in a uv
-project. For an editable checkout, see [Contributing and developing](developer.md).
+project. For an editable checkout, see [Contributing and developing](developer.qmd).
 
 ## Versioning
 
@@ -79,4 +79,4 @@ Cabby uses `major.minor.revision` version numbers. The revision number identifie
 
 ## Next steps
 
-Continue with the [User guide](user.md) to see how to use Cabby.
+Continue with the [User guide](user.qmd) to see how to use Cabby.

@@ -2,6 +2,7 @@ include LICENSE.md
 include CHANGES.md
 include README.md
 include requirements.txt
-include docs/*.md docs/conf.py docs/Makefile
-include docs/_templates/*.html
+include docs/*.qmd docs/_quarto.yml docs/Makefile
+include docs/assets/*.png docs/assets/*.scss
+include docs/_api/*.md docs/_api/conf.py
 global-exclude *.pyc

@@ -1,7 +1,15 @@
-# Cabby
+---
+title: Introduction
+aliases: [search.html]
+format:
+  html:
+    body-classes: misp-home
+---
 
+::: {.guide-lead}
 The [MISP Project](https://www.misp-project.org/) maintains this fork of Cabby,
 a Python TAXII client originally developed by [EclecticIQ](https://www.eclecticiq.com).
+:::
 
 TAXII (Trusted Automated eXchange of Indicator Information) defines services and
 message exchanges for sharing cyber threat intelligence. See the [TAXII homepage](http://taxii.mitre.org/).
@@ -11,28 +19,13 @@ services and TAXII 2.1 Core and Collections endpoints. The TAXII 1.x clients
 return version-agnostic entities and stream Poll Response messages so callers can
 process the first content block while the rest of the response arrives.
 
-## Documentation contents
+::: {.guide-links}
+[**Install Cabby** Set up the CLI or add the library to a Python project.](installation.qmd){.guide-link}
 
-- [Installation guide](installation.md)
-- [TAXII 2.1](taxii21.md)
-- [User guide](user.md)
-- [Cabby API documentation](api.md)
-- [Contributing and developing](developer.md)
-- [Changelog](changes.md)
-- [License](license.md)
+[**Use TAXII 2.1** Discover API roots and work with collections.](taxii21.qmd){.guide-link}
 
-```{toctree}
-:hidden:
-:maxdepth: 1
-
-installation
-taxii21
-user
-api
-developer
-changes
-license
-```
+[**Use TAXII 1.x** Poll, push and manage subscriptions.](user.qmd){.guide-link}
+:::
 
 ## External links
 

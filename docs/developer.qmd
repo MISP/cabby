@@ -18,7 +18,7 @@ The Cabby repository has the following layout:
 
 ## Develop with uv
 
-Install uv as described in the [installation](installation.md) guide. From the repository
+Install uv as described in the [installation](installation.qmd) guide. From the repository
 root, create a virtual environment and install Cabby in editable mode with its
 development dependencies:
 
@@ -45,15 +45,17 @@ To run the existing tox environments, use `uvx --python 3.12 --with tox-uv tox -
 
 ## Generating the documentation
 
-The guides use Markdown. Sphinx builds the site with the MyST parser and
-generates the API reference from Cabby's docstrings. From the repository root,
-build the HTML site with uv.
+The site uses the [MISP book](https://github.com/MISP/misp-book) template.
+Install [Quarto 1.9.38](https://quarto.org/docs/get-started/), uv, and Make. Then
+run the following from the repository root. The docs extra provides autodoc,
+which generates the API chapter from Cabby's Python docstrings.
 
 ```sh
-uv run --python 3.12 --extra docs sphinx-build -W -b html docs docs/_build/html
+uv run --python 3.12 --extra docs make -C docs html
 ```
 
-Open `docs/_build/html/index.html` to browse the result.
+Open `docs/_book/index.html` to browse the result, or use
+`uv run --python 3.12 --extra docs make -C docs preview` while editing.
 
 The Documentation workflow checks the site on pull requests and publishes it
 to [GitHub Pages](https://misp.github.io/cabby/) on pushes to `master`. For
@@ -87,4 +89,4 @@ values so PyPI can identify the release job.
 
 ## Next steps
 
-Continue to [License](license.md).
+Continue to [License](license.qmd).

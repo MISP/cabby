@@ -51,8 +51,10 @@ coverage.xml
 # Django stuff:
 *.log
 
-# Sphinx documentation
-docs/_build/
+# Generated Quarto documentation
+docs/.quarto/
+docs/_book/
+docs/_generated/
 
 # PyBuilder
 target/
