@@ -1,6 +1,8 @@
 # Cabby
 
-Cabby is a Python TAXII client from [EclecticIQ](https://www.eclecticiq.com).
+The [MISP Project](https://www.misp-project.org/) maintains this fork of Cabby,
+a Python TAXII client originally developed by [EclecticIQ](https://www.eclecticiq.com).
+
 TAXII (Trusted Automated eXchange of Indicator Information) defines services and
 message exchanges for sharing cyber threat intelligence. See the [TAXII homepage](http://taxii.mitre.org/).
 
