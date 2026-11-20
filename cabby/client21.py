@@ -11,6 +11,7 @@ from .exceptions import InvalidResponseError
 
 
 MEDIA_TYPE = "application/taxii+json;version=2.1"
+MANIFEST_ACCEPT = f"{MEDIA_TYPE}, application/stix+json;version=2.1"
 
 
 def _https_url(url):
@@ -72,8 +73,8 @@ class Client21:
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
 
-    def _request(self, method, url, *, params=None, envelope=None):
-        headers = {"Accept": MEDIA_TYPE}
+    def _request(self, method, url, *, params=None, envelope=None, accept=MEDIA_TYPE):
+        headers = {"Accept": accept}
         if envelope is not None:
             headers["Content-Type"] = MEDIA_TYPE
         response = self.session.request(
@@ -134,7 +135,7 @@ class ApiRoot21:
     def _collection(self, collection_id):
         return self.url + f"collections/{_segment(collection_id)}/"
 
-    def _pages(self, url, *, limit=None, added_after=None, match=None, next_token=None):
+    def _pages(self, url, accept=MEDIA_TYPE, /, *, limit=None, added_after=None, match=None, next_token=None):
         params = _params(match)
         if limit is not None:
             if not isinstance(limit, int) or isinstance(limit, bool) or limit <= 0:
@@ -154,7 +155,7 @@ class ApiRoot21:
                 raise ValueError("next_token must be a nonempty string")
             params["next"] = next_token
         while True:
-            page, headers = self._client._request("GET", url, params=params)
+            page, headers = self._client._request("GET", url, params=params, accept=accept)
             more = page.get("more", False)
             next_token = page.get("next")
             if not isinstance(more, bool) or (next_token is not None and not isinstance(next_token, str)):
@@ -182,7 +183,7 @@ class ApiRoot21:
 
     def manifest_pages(self, collection_id, **filters):
         """Yield manifest resources, preserving each entry and custom property."""
-        return self._pages(self._collection(collection_id) + "manifest/", **filters)
+        return self._pages(self._collection(collection_id) + "manifest/", MANIFEST_ACCEPT, **filters)
 
     def version_pages(self, collection_id, object_id, **filters):
         """Yield versions resources for an object."""

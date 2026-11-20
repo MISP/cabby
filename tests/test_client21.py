@@ -85,6 +85,9 @@ def test_paged_resources(operation, suffix):
     queries = [parse_qs(urlsplit(call.request.url).query) for call in responses.calls]
     assert queries == [base, dict(base, next=["state+/="]), dict(base, next=["state+/="]),
                        dict(base, added_after=[STAMP])]
+    expected_media = {MEDIA, "application/stix+json;version=2.1"} if suffix == "manifest/" else {MEDIA}
+    for call in responses.calls:
+        assert {item.strip() for item in call.request.headers["Accept"].split(",")} == expected_media
 
 
 @responses.activate
