@@ -28,7 +28,7 @@ if [ $0 = '/cabby/docker-help.sh' ]; then
 	echo
 fi
 
-echo "More information available at: http://cabby.readthedocs.org"
+echo "More information available at: https://misp.github.io/cabby/"
 echo
 
 unset _cmd
