@@ -7,7 +7,7 @@ format:
 ---
 
 ::: {.guide-lead}
-The [MISP Project](https://www.misp-project.org/) maintains this fork of Cabby,
+The [MISP Project](https://misp-project.org/) maintains this fork of Cabby,
 a Python TAXII client originally developed by [EclecticIQ](https://www.eclecticiq.com).
 :::
 
@@ -32,4 +32,5 @@ process the first content block while the rest of the response arrives.
 - [Cabby documentation on GitHub Pages](https://misp.github.io/cabby/)
 - [Source code and issue tracker on GitHub](https://github.com/MISP/cabby/)
 - [misp-cabby releases on PyPI](https://pypi.org/project/misp-cabby/)
+- [MISP Project](https://misp-project.org/)
 - [EclecticIQ](https://www.eclecticiq.com)
