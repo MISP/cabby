@@ -5,7 +5,6 @@ For TAXII 2.1, see [TAXII 2.1 guide](taxii21.qmd). This guide covers the TAXII 1
 - using Cabby as a library
 - using Cabby as a command line tool
 - configuration via environment variables
-- Docker quickstart guide
 
 Note: this document assumes basic familiarity with TAXII specifications. Visit the [TAXII
 homepage](https://taxiiproject.github.io/) for more information about its features.
@@ -199,16 +198,6 @@ Use `--help` to get more usage details.
 ## Configuration via environment variables
 
 - `CABBY_NO_HUGE_TREES`: by default Cabby enables support for huge trees in [lxml lib](http://lxml.de) (see [lxml manual](http://lxml.de/parsing.html)). This disables security restrictions and enables support for very deep trees and very long text content. To disable this, set `CABBY_NO_HUGE_TREES` environment variable to any value.
-
-## Docker Quickstart
-
-To ease the threshold for trying out Cabby, it is possible to use the image provided by EclecticIQ:
-
-```console
-$ docker run --rm cabby bash
-```
-
-This will show you some helpful information on what commands are available, and then give you an interactive shell to play around in.
 
 ## Next steps
 

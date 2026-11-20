@@ -23,17 +23,9 @@ uv tool install --python 3.12 misp-cabby
 taxii-discovery --help
 ```
 
-For library use, install `misp-cabby` and use `import cabby`. The
+For library use, run `uv add misp-cabby` in your project and use `import cabby`. The
 [installation guide](https://misp.github.io/cabby/installation.html) also covers
 switching from the original distribution and installing directly from GitHub.
-
-## Docker
-
-To run EclecticIQ's Cabby image, use the following command.
-
-```sh
-docker run --rm eclecticiq/cabby taxii-discovery --path https://test.taxiistand.com/read-only/services/discovery
-```
 
 ## Feedback
 
