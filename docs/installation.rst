@@ -4,42 +4,58 @@ Installation guide
 
 .. highlight:: sh
 
-Install Python
-==============
+Cabby supports Python 3.11 and 3.12. The commands below use Python 3.12.
 
-Cabby supports Python 3.11 and 3.12. Its TAXII dependency, libtaxii, uses the standard-library module ``cgi``, which Python 3.13 removed. You can install Python with your operating system’s package manager or download it directly from `python.org <https://www.python.org/downloads/>`_.
+Install uv
+==========
 
-Run ``python --version`` to verify the installed version. For example::
+On macOS or Linux, run Astral's installer in a terminal::
 
-    $ python --version
-    Python 3.12.14
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-Install Cabby
-=============
+On Windows, run the installer in PowerShell::
 
-To sandbox the project and protect system-wide python it is recommended to install Cabby into a `virtual environment <https://virtualenv.pypa.io/en/latest/installation.html>`_ (*virtualenv*):
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
-Create a virtual environment named venv::
+Open a new terminal and check the installation::
 
-   $ python3.12 -m venv venv
+    uv --version
 
-Where ``venv`` is a directory to place the new environment.
+See the `uv installation guide <https://docs.astral.sh/uv/getting-started/installation/>`_
+for package-manager alternatives. uv can download Python 3.12 automatically
+when a command requests it.
 
-Activate this environment::
+Install the TAXII command-line tools
+====================================
 
-   $ . venv/bin/activate
-   (venv) $
-   
-You can now install the latest Cabby release from the `Python Package Index <http://pypi.python.org/>`_ (PyPI) using ``pip``::
+Install the MISP fork from GitHub into an isolated tool environment::
 
-   (venv) $ pip install cabby
+    uv tool install --python 3.12 git+https://github.com/MISP/cabby.git
+    taxii-discovery --help
 
-.. note::
-    Since Cabby has `libtaxii <https://github.com/TAXIIProject/libtaxii>`_ as a dependency, the system libraries
-    `libtaxii` requires need to be installed. Check
-    `libtaxii documentation <http://libtaxii.readthedocs.org/en/latest/installation.html#dependencies>`_ for the details.
+If your shell cannot find the command, run ``uv tool update-shell`` and open
+a new terminal. The installation also provides ``taxii-collections``,
+``taxii-poll``, ``taxii-proxy``, ``taxii-push`` and ``taxii-subscription``.
 
-To install Cabby from a source tarball, unpack it and run ``python -m pip install .`` in the unpacked directory.
+Use Cabby in a Python project
+=============================
+
+From a uv project with a compatible Python requirement (for example,
+``requires-python = ">=3.11,<3.13"``), add the MISP fork and verify the import::
+
+    uv add "cabby @ git+https://github.com/MISP/cabby.git"
+    uv run python -c "from cabby import create_client; print(create_client.__name__)"
+
+uv records the dependency in ``pyproject.toml`` and the resolved Git commit
+in ``uv.lock``. For an editable installation from a local checkout, see
+:doc:`developer`.
+
+Install with pip
+================
+
+With a Python 3.11 or 3.12 virtual environment active, install the MISP fork
+from a checkout with ``python -m pip install .``. To install the published
+PyPI release, run ``python -m pip install cabby``.
 
 
 Versioning
