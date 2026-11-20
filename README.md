@@ -1,6 +1,6 @@
 # Cabby
 
-The [MISP Project](https://www.misp-project.org/) maintains this fork of Cabby,
+The [MISP Project](https://misp-project.org/) maintains this fork of Cabby,
 a Python TAXII client originally developed by [EclecticIQ](https://www.eclecticiq.com).
 
 [Source](https://github.com/MISP/cabby) · [Documentation](https://misp.github.io/cabby/) · [misp-cabby on PyPI](https://pypi.org/project/misp-cabby/)
