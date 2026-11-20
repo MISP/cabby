@@ -13,6 +13,9 @@ a Python TAXII client originally developed by [EclecticIQ](https://www.eclectici
 Use `cabby.Client` and `taxii-21` for TAXII 2.1 discovery and collections.
 Existing `create_client()` calls default to TAXII 1.1. See the [TAXII 2.1 guide](https://misp.github.io/cabby/taxii21.html) for examples.
 
+For TAXII 1.0 and 1.1 XML messages, Cabby automatically installs
+`misp-libtaxii`, the [MISP Project's libtaxii fork](https://github.com/MISP/libtaxii).
+
 ## Install with uv
 
 With [uv](https://docs.astral.sh/uv/getting-started/installation/) installed,

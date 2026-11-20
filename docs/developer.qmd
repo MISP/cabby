@@ -43,6 +43,16 @@ taxii-discovery --help
 
 To run the existing tox environments, use `uvx --python 3.12 --with tox-uv tox -e py312,flake8`.
 
+To test a change to [MISP/libtaxii](https://github.com/MISP/libtaxii) together
+with Cabby, check out that repository as `../libtaxii`. From a fresh Cabby
+virtual environment, install both checkouts in the same operation and run the
+client tests.
+
+```sh
+uv pip install -r requirements-dev.txt -e ../libtaxii -e .
+python -m pytest tests/test_client10.py tests/test_client11.py tests/test_client21.py
+```
+
 ## Generating the documentation
 
 The site uses the [MISP book](https://github.com/MISP/misp-book) template.
