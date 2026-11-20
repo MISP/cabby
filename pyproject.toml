@@ -6,10 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "cabby"
 dynamic = ["version", "dependencies"]
 description = "TAXII client library"
-readme = "README.rst"
+readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = "BSD-3-Clause"
-license-files = ["LICENSE.rst"]
+license-files = ["LICENSE.md"]
 authors = [{name = "EclecticIQ", email = "cabby@eclecticiq.com"}]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -23,10 +23,15 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
+[project.optional-dependencies]
+docs = ["sphinx>=7", "myst-parser>=4"]
+
 [project.urls]
 Homepage = "https://github.com/MISP/cabby"
+Documentation = "https://misp.github.io/cabby/"
 
 [project.scripts]
+taxii-21 = "cabby.cli.taxii21:main"
 taxii-proxy = "cabby.cli:proxy_content"
 taxii-poll = "cabby.cli:poll_content"
 taxii-push = "cabby.cli:push_content"

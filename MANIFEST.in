@@ -1,6 +1,7 @@
-include LICENSE.rst
-include CHANGES.rst
-include README.rst
+include LICENSE.md
+include CHANGES.md
+include README.md
 include requirements.txt
-recursive-include docs *.rst
+include docs/*.md docs/conf.py docs/Makefile
+include docs/_templates/*.html
 global-exclude *.pyc

@@ -9,6 +9,7 @@ cat <<EOF
 
 Cabby commands you can run:
 
+  taxii-21
   taxii-collections
   taxii-discovery
   taxii-poll
@@ -27,7 +28,7 @@ if [ $0 = '/cabby/docker-help.sh' ]; then
 	echo
 fi
 
-echo "More information available at: http://cabby.readthedocs.org"
+echo "More information available at: https://misp.github.io/cabby/"
 echo
 
 unset _cmd

@@ -1,5 +1,4 @@
-License
-=======
+# License
 
 Copyright © 2016, EclecticIQ
 
