@@ -38,5 +38,5 @@ license
 
 - [Cabby documentation on GitHub Pages](https://misp.github.io/cabby/)
 - [Source code and issue tracker on GitHub](https://github.com/MISP/cabby/)
-- [Releases on PyPI](https://pypi.org/project/cabby/)
+- [misp-cabby releases on PyPI](https://pypi.org/project/misp-cabby/)
 - [EclecticIQ](https://www.eclecticiq.com)
