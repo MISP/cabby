@@ -2,6 +2,7 @@
 
 ## 0.1.24 (unreleased)
 
+- Use the MISP-maintained `misp-libtaxii` distribution for TAXII 1.0 and 1.1.
 - Use `misp-cabby` as the PyPI distribution name. Python imports and CLI names stay the same.
 - Add TAXII 2.1 Core and Collections support through `cabby.Client` and
   the `taxii-21` command. The existing factory keeps its TAXII 1.1 default.

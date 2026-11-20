@@ -1,4 +1,12 @@
+from importlib.metadata import version
+
+import libtaxii
+
 import cabby
+
+
+def test_libtaxii_distribution():
+    assert libtaxii.__version__ == version('misp-libtaxii')
 
 
 def test_url_parse():

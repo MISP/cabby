@@ -1,4 +1,4 @@
-libtaxii>=1.1.111
+misp-libtaxii>=1.1.120
 colorlog
 lxml
 python-dateutil

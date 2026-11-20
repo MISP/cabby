@@ -3,6 +3,9 @@
 Cabby supports Python 3.11 and 3.12. The commands below use Python 3.12.
 The MISP fork's distribution name is `misp-cabby`. Python code imports
 `cabby`, and the command-line tools use their existing `taxii-*` names.
+Installing Cabby also installs `misp-libtaxii` (1.1.120 or later) for
+TAXII 1.0 and 1.1 XML messages. The fork provides the `libtaxii` Python
+module. See [MISP/libtaxii](https://github.com/MISP/libtaxii).
 
 ## Install uv
 
@@ -65,6 +68,10 @@ Both distributions provide the same `cabby` module and CLI commands. In a uv
 project that depends on `cabby`, run `uv remove cabby` before `uv add misp-cabby`.
 For a pip installation, run `python -m pip uninstall cabby` before installing
 `misp-cabby`. For a uv tool installation, run `uv tool uninstall cabby` first.
+
+If your environment already contains the upstream `libtaxii` distribution,
+install Cabby in a fresh environment. Both libtaxii distributions own the
+same Python module and CLI files.
 
 ## Install directly from GitHub
 
