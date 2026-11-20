@@ -1,17 +1,15 @@
-from collections import namedtuple
+import gzip
 import json
+import logging
 import os
 import ssl
-import sys
-import logging
-
-from six import StringIO
+import urllib.error
+import urllib.request
+from collections import namedtuple
 
 import furl
-import gzip
 import requests
 from lxml import etree
-from six.moves import urllib
 from requests.auth import AuthBase, HTTPBasicAuth
 
 from libtaxii import messages_11 as tm11
@@ -93,13 +91,6 @@ def request_stream(session, url, request_body, timeout, headers=None):
         stream, headers = response.raw, response.headers
 
     if 'gzip' in headers.get('content-encoding', ''):
-
-        if sys.version_info < (3, 2):
-            # It is impossible to seek on a HTTP response inside gzipped stream
-            # in gzip lib for python < v3.2, so we are forced to read all
-            # stream content into memory
-            stream = StringIO(stream.read())
-
         stream = gzip.GzipFile(fileobj=stream)
 
     return stream, headers
@@ -228,8 +219,7 @@ def _parse_response(stream, headers, version):
 
         yield const.STREAM_MARKER
 
-        for obj in _stream_poll_response(namespace, gen):
-            yield obj
+        yield from _stream_poll_response(namespace, gen)
 
     else:
         # Walk tree iterator to the end to fill up root element
@@ -391,10 +381,6 @@ def obtain_jwt_token(session, jwt_url, username, password, timeout=None):
 
 def request_with_key_password(
         session, url, request_body, timeout=None, headers=None):
-    if sys.version_info < (2, 7, 9):
-        raise ValueError(
-            'Key password specification is not supported in Python < v2.7.9')
-
     if session.auth:
         # Using Requests Session's auth handlers to fill in proper headers
         DummyRequest = namedtuple('DummyRequest', ['headers'])

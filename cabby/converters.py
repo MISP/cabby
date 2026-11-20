@@ -1,6 +1,3 @@
-import six
-from six.moves import map
-
 from . import constants as const
 from .entities import (
     ContentBinding, Collection, PushMethod,
@@ -89,7 +86,7 @@ def to_collection_entity(collection, version):
 
 def to_content_binding_entity(raw_binding):
 
-    if isinstance(raw_binding, six.string_types):
+    if isinstance(raw_binding, str):
         binding = ContentBinding(raw_binding)
     else:
         binding = ContentBinding(
@@ -131,7 +128,7 @@ def to_detailed_service_instance_entity(service):
 
 
 def convert_to_bytes(content):
-    if isinstance(content, six.text_type):
+    if isinstance(content, str):
         return content.encode('utf-8')
     return content
 

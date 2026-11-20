@@ -2,11 +2,8 @@ import responses
 import pytest
 import json
 import gzip
-import sys
 import requests
 from time import sleep
-
-from six import StringIO
 
 from libtaxii import messages_11 as tm11
 from libtaxii import messages_10 as tm10
@@ -178,23 +175,13 @@ def test_jwt_auth_response(version):
     assert len(services) == 4
 
 
-def compress(text):
-    if sys.version_info < (3, 2):
-        out = StringIO()
-        with gzip.GzipFile(fileobj=out, mode="w") as f:
-            f.write(text)
-        return out.getvalue()
-    else:
-        return gzip.compress(text.encode('utf-8'))
-
-
 @pytest.mark.parametrize("version", [11, 10])
 @responses.activate
 def test_gzip_response(version):
     uri = get_fix(version).DISCOVERY_URI_HTTP
     response = get_fix(version).DISCOVERY_RESPONSE
 
-    body = compress(response)
+    body = gzip.compress(response.encode('utf-8'))
 
     register_uri(uri, body, version, headers={
         'Content-Encoding': 'application/gzip'

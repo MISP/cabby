@@ -1,13 +1,11 @@
-
-import pytz
-from datetime import datetime
+from datetime import UTC, datetime
 import libtaxii.messages_11 as tm11
 
 from .entities import ContentBinding
 
 
 def get_utc_now():
-    return datetime.now(pytz.UTC)
+    return datetime.now(UTC)
 
 
 def pack_content_binding(content_binding, version):

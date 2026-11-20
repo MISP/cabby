@@ -1,12 +1,12 @@
 import ssl
 import threading
+from urllib.error import URLError
 
 import pytest
 import trustme
 import werkzeug.serving
 import werkzeug.wrappers
 from cryptography.hazmat.primitives import serialization
-from six.moves import urllib
 
 import cabby
 import fixtures11
@@ -102,7 +102,7 @@ def test_set_auth_ssl(httpsserver):
 
     # Test client certificate with key_password.
     # This doesn't use the requests library, instead
-    # it uses urllib2 or 3 through the 'request_with_key_password' function:
+    # it uses urllib.request through the 'request_with_key_password' function:
     client.set_auth(**auth_params)
     services = client.discover_services()
     assert len(services) == 4
@@ -118,7 +118,7 @@ def test_set_auth_ssl(httpsserver):
     invalid_server_ca_cert = dict(auth_params, ca_cert=None)
     client.set_auth(**invalid_server_ca_cert)
     error_msg = "certificate verify failed"
-    with pytest.raises(urllib.error.URLError, match=error_msg):
+    with pytest.raises(URLError, match=error_msg):
         client.discover_services()
 
     # Test that verify_ssl=False ignores the invalid certificate:
@@ -146,5 +146,5 @@ def test_encrypted_client_key_verifies_server_hostname(httpsserver):
     client.timeout = 5
     client.set_auth(**tls_params)
 
-    with pytest.raises((urllib.error.URLError, ssl.CertificateError), match='[Hh]ostname'):
+    with pytest.raises(URLError, match='[Hh]ostname'):
         client.discover_services()
