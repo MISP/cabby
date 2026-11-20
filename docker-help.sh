@@ -9,6 +9,7 @@ cat <<EOF
 
 Cabby commands you can run:
 
+  taxii-21
   taxii-collections
   taxii-discovery
   taxii-poll

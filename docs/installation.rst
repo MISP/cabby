@@ -34,7 +34,7 @@ Install the MISP fork from GitHub into an isolated tool environment::
     taxii-discovery --help
 
 If your shell cannot find the command, run ``uv tool update-shell`` and open
-a new terminal. The installation also provides ``taxii-collections``,
+a new terminal. Use ``taxii-21 --help`` for the TAXII 2.1 command (see :doc:`taxii21`). The installation also provides ``taxii-collections``,
 ``taxii-poll``, ``taxii-proxy``, ``taxii-push`` and ``taxii-subscription``.
 
 Use Cabby in a Python project

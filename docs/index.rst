@@ -10,7 +10,7 @@ TAXII (Trusted Automated eXchange of Indicator Information) is a collection of s
 Cabby is designed from the ground up to act as a Python library and as a command line tool, it's key features are:
 
 * **Rich feature set**:
-  supports all TAXII services according to TAXII specification (v1.0 and v1.1).
+  supports TAXII 1.0 and 1.1 services and the TAXII 2.1 Core and Collections endpoints.
 
 * **Version agnostic**:
   abstracts specific implementation details and returns version agnostic entities.
@@ -25,6 +25,7 @@ Cabby is designed from the ground up to act as a Python library and as a command
    :maxdepth: 1
 
    installation
+   taxii21
    user
    api
    developer

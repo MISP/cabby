@@ -27,6 +27,7 @@ classifiers = [
 Homepage = "https://github.com/MISP/cabby"
 
 [project.scripts]
+taxii-21 = "cabby.cli.taxii21:main"
 taxii-proxy = "cabby.cli:proxy_content"
 taxii-poll = "cabby.cli:poll_content"
 taxii-push = "cabby.cli:push_content"

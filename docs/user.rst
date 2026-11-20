@@ -2,7 +2,7 @@
 User guide
 ==========
 
-This user guide gives an overview of Cabby. It covers:
+For TAXII 2.1, see :doc:`taxii21`. This guide covers the TAXII 1.x clients, including:
 
 * using Cabby as a library
 * using Cabby as a command line tool

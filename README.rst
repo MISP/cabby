@@ -24,7 +24,9 @@ Python TAXII client implementation from `EclecticIQ <https://www.eclecticiq.com>
    :target: https://requires.io/github/eclecticiq/cabby/requirements/?branch=master
    :alt: Requirements Status
 
-A simple Python library for interacting with TAXII servers.
+Use ``cabby.Client`` and ``taxii-21`` for TAXII 2.1 discovery and collections.
+See the `TAXII 2.1 guide <docs/taxii21.rst>`_ for examples.
+Existing ``create_client()`` calls default to TAXII 1.1.
 
 
 Install with uv

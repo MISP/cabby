@@ -4,6 +4,8 @@ Changelog
 0.1.24 (unreleased)
 -------------------
 
+* Add TAXII 2.1 Core and Collections support through ``cabby.Client`` and
+  the ``taxii-21`` command. The existing factory keeps its TAXII 1.1 default.
 * Allow HTTPS authentication with certificates for taxii-proxy
 * Support Python 3.12 and fix TLS connections that use encrypted client keys.
 * Drop support for end-of-life Python releases. Supported versions are 3.11 and 3.12.
