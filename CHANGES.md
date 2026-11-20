@@ -41,7 +41,7 @@
 
 ## 0.1.17 (2017-04-03)
 
-- Support for XML "huge trees" added. It can be disabled with environment variable. See [Configuration via environment variables](docs/user.md#configuration-via-environment-variables).
+- Support for XML "huge trees" added. It can be disabled with environment variable. See [Configuration via environment variables](https://misp.github.io/cabby/user.html#configuration-via-environment-variables).
 
 ## 0.1.16 (2016-10-31)
 

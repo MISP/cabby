@@ -1,0 +1,9 @@
+{{< include ../LICENSE.md >}}
+
+## MISP book theme
+
+The stylesheet and MISP logo used by this documentation come from the
+[MISP User Guide](https://github.com/MISP/misp-book/tree/8bce16b33b6583ebc6053e2331ccea0ba4c087f0).
+The guide credits the MISP Project and its contributors and is available under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) and
+[AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html).

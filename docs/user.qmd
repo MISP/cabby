@@ -1,6 +1,6 @@
 # User guide
 
-For TAXII 2.1, see [TAXII 2.1 guide](taxii21.md). This guide covers the TAXII 1.x clients, including:
+For TAXII 2.1, see [TAXII 2.1 guide](taxii21.qmd). This guide covers the TAXII 1.x clients, including:
 
 - using Cabby as a library
 - using Cabby as a command line tool
@@ -69,7 +69,7 @@ from cabby import create_client
 client = create_client('open.taxiistand.com', version='1.0')
 ```
 
-> Cabby client instances configured for TAXII 1.0 or TAXII 1.1 have slightly different method signatures (see [Cabby API documentation](api.md) for details).
+> Cabby client instances configured for TAXII 1.0 or TAXII 1.1 have slightly different method signatures (see [Cabby API documentation](api.qmd) for details).
 
 ### Authentication methods
 
@@ -194,7 +194,8 @@ Copy content blocks from one server to another:
 
 Use `--help` to get more usage details.
 
-(configuration_via_env_vars)=
+<span id="configuration-via-env-vars"></span>
+
 ## Configuration via environment variables
 
 - `CABBY_NO_HUGE_TREES`: by default Cabby enables support for huge trees in [lxml lib](http://lxml.de) (see [lxml manual](http://lxml.de/parsing.html)). This disables security restrictions and enables support for very deep trees and very long text content. To disable this, set `CABBY_NO_HUGE_TREES` environment variable to any value.
@@ -211,4 +212,4 @@ This will show you some helpful information on what commands are available, and 
 
 ## Next steps
 
-See [Cabby API documentation](api.md).
+See [Cabby API documentation](api.qmd).

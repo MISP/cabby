@@ -1,0 +1,5 @@
+---
+from: markdown+gfm_auto_identifiers
+---
+
+{{< include ../CHANGES.md >}}
