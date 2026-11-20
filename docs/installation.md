@@ -61,7 +61,7 @@ PyPI release, run `python -m pip install cabby`.
 
 ## Versioning
 
-Releases of Cabby are given major.minor.revision version numbers, where major and minor correspond to the roadmap EclecticIQ has. The revision number is used to indicate a bug fix only release.
+Cabby uses `major.minor.revision` version numbers. The revision number identifies bug-fix releases.
 
 ## Next steps
 

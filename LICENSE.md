@@ -2,6 +2,8 @@
 
 Copyright © 2016, EclecticIQ
 
+Copyright © 2026, MISP project
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

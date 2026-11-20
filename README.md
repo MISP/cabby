@@ -1,6 +1,7 @@
 # Cabby
 
-Cabby is a Python TAXII client from [EclecticIQ](https://www.eclecticiq.com).
+The [MISP Project](https://www.misp-project.org/) maintains this fork of Cabby,
+a Python TAXII client originally developed by [EclecticIQ](https://www.eclecticiq.com).
 
 [Source](https://github.com/MISP/cabby) · [Documentation](https://misp.github.io/cabby/) · [PyPI](https://pypi.org/project/cabby/)
 
@@ -27,7 +28,7 @@ and for adding Cabby to a Python project.
 
 ## Docker
 
-Run Cabby using Docker.
+To run EclecticIQ's Cabby image, use the following command.
 
 ```sh
 docker run --rm eclecticiq/cabby taxii-discovery --path https://test.taxiistand.com/read-only/services/discovery
@@ -35,5 +36,4 @@ docker run --rm eclecticiq/cabby taxii-discovery --path https://test.taxiistand.
 
 ## Feedback
 
-Comment on an [open issue](https://github.com/MISP/cabby/issues) or email
-[cabby@eclecticiq.com](mailto:cabby@eclecticiq.com).
+Report issues and share feedback on the [MISP/cabby issue tracker](https://github.com/MISP/cabby/issues).

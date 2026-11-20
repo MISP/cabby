@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Cabby'
-copyright = u'2016, EclecticIQ'
+copyright = '2016, EclecticIQ. © 2026, MISP project'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
